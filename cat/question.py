@@ -3,8 +3,8 @@
 
 import re
 
-from .script import Script
-from .pattern import parse
+from script import Script
+from pattern import parse
 
 __all__ = ['Question', 'UnknownQuery']
 
@@ -22,7 +22,7 @@ class Question:
     depending on the answer.
     """
 
-    def __init__(self, text: str, scripts: list=()):
+    def __init__(self, text, scripts=list()):
         """
         :param text:    str object representing the
                         question text/prompt.
@@ -42,11 +42,11 @@ class Question:
         :return: The return value of the detected script
         """
 
-        answer = input(self.text)
+        answer = raw_input(self.text)
 
         return self.execute_matching_script(answer)
         
-    def execute_matching_script(self, answer: str):
+    def execute_matching_script(self, answer):
         """
         Return the result of the script which pattern
         match the answer.
@@ -62,7 +62,7 @@ class Question:
                 
         raise UnknownQuery('Unmatched answer {!r}'.format(answer))
         
-    def script(self, expr: str, *flags):
+    def script(self, expr, *flags):
         """
         Instantiate a new script.
 
@@ -74,7 +74,7 @@ class Question:
         if isinstance(expr, str):
             expr = re.compile(parse(expr), *flags)
 
-        def _decorator_wrapper(fn: callable):
+        def _decorator_wrapper(fn):
             script = Script(fn, expr, [self])
             self.scripts.append(script)
             return script

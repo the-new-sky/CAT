@@ -11,7 +11,7 @@ class Script:
 
     __slots__ = ['fn', 'listeners', 'pattern']
 
-    def __init__(self, fn: callable, pattern, listeners: list=()):
+    def __init__(self, fn, pattern, listeners):
         """
         :param fn:        Callable object executed when a
                           listener need it.

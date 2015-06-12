@@ -44,7 +44,7 @@ class State(Enum):
     REGEX = RegexContextToken                # Between colon and closing brace
 
 
-def lex(s: str) -> list:
+def lex(s):
     """
     Chop a given string into tokens to match a semi regular
     expression pattern
@@ -118,7 +118,7 @@ def lex(s: str) -> list:
     return tokens
 
 
-def parse(s: str):
+def parse(s):
     """
     Transform a simple string into a regular expression
     """
